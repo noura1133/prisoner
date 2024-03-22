@@ -99,7 +99,7 @@ public class GameActivity extends AppCompatActivity implements SensorEventListen
         // TODO
         // Mettre ça autre part ??
         TextView scoreTextView = findViewById(R.id.textViewScore);
-        scoreTextView.setText(score == null ? "0" : String.valueOf(score));
+        scoreTextView.setText(score == null ? "Score : 0" : "Score : "  + score);
         if(gameType == GameTypeEnum.OFFICER){
             Intent intent = new Intent(GameActivity.this, BushActivity.class);
             intent.putExtra("score", String.valueOf(score));

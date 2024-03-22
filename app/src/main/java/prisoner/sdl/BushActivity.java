@@ -1,6 +1,7 @@
 package prisoner.sdl;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.activity.EdgeToEdge;
@@ -14,6 +15,11 @@ public class BushActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(new GameView(this));
+
+        Intent intent = getIntent();
+        String score = intent.getStringExtra("score");
+        long timer = intent.getLongExtra("timer", 0); // Récupérer le timer depuis l'intent
+
+        setContentView(new GameView(this, score, timer)); // Passer le score et le timer à GameView
     }
 }

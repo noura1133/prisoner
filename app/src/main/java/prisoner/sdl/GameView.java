@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
 import android.graphics.drawable.Drawable;
 import android.util.Log;
 import android.view.MotionEvent;
@@ -21,12 +23,17 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
     private Bitmap buissonBitmap;
     private boolean buissonVisible;
     private int buissonX, buissonY;
+    private int score;
+    private Paint paint;
 
-    public GameView(Context context) {
+
+
+    public GameView(Context context, String score, long timer) {
         super(context);
         getHolder().addCallback(this);
-        gameThread = new GameThread(getHolder(), this);
+        gameThread = new GameThread(getHolder(), this, timer);
         buissonVisible = false;
+        this.score = Integer.parseInt(score);
 
         buissonBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.bush);
 
@@ -34,6 +41,9 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
         int newHeight = buissonBitmap.getHeight() / 2;
         buissonBitmap = Bitmap.createScaledBitmap(buissonBitmap, newWidth, newHeight, false);
 
+        paint = new Paint();
+        paint.setColor(Color.WHITE);
+        paint.setTextSize(50);
     }
 
 
@@ -68,7 +78,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
     public void draw(Canvas canvas) {
         super.draw(canvas);
         if (canvas != null) {
-            Drawable background = ContextCompat.getDrawable(getContext(), R.drawable.fond_jeu);
+            Drawable background = ContextCompat.getDrawable(getContext(), R.drawable.prisoner_bush_guard);
             if (background != null) {
                 background.setBounds(0, 0, canvas.getWidth(), canvas.getHeight());
                 background.draw(canvas);
@@ -76,7 +86,13 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
             if (buissonVisible) {
                 canvas.drawBitmap(buissonBitmap, buissonX, buissonY, null);
             }
+            drawScore(canvas);
+
         }
+    }
+
+    private void drawScore(Canvas canvas) {
+        canvas.drawText("Score: " + score, 50, getHeight() - 50, paint);
     }
 
     public void setBuissonPosition(int x, int y) {
@@ -99,10 +115,12 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
         if (event.getAction() == MotionEvent.ACTION_DOWN) {
             if (touchX >= buissonX && touchX < buissonX + buissonBitmap.getWidth() &&
                     touchY >= buissonY && touchY < buissonY + buissonBitmap.getHeight()) {
-
+                score ++;
                 Intent intent = new Intent(getContext(), GameActivity.class);
+                intent.putExtra("score", String.valueOf(score));
                 getContext().startActivity(intent);
                 return true;
+
             }
         }
         return super.onTouchEvent(event);

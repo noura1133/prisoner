@@ -5,7 +5,6 @@ public enum GameTypeEnum {
     DOG ("dog_level"),
     LIGHT ("light_level"),
     OFFICER ("officer_level");
-   // BASIC ("basic_level");
 
     private final String label;
 
