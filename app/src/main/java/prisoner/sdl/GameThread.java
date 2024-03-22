@@ -92,4 +92,5 @@ public class GameThread extends Thread {
         bushX = x;
     }
 }
+}
 
