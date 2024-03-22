@@ -23,7 +23,6 @@ public class GameThread extends Thread {
     private long elapsedTime;
     private int targetX, targetY;
 
-    private long elapsedTime;
     private long timer;
 
 
