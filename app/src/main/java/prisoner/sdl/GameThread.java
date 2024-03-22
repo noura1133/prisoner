@@ -17,6 +17,7 @@ public class GameThread extends Thread {
     private int bushX, bushY;
     private boolean bushTouched = false;
     private long startTime;
+    private long elapsedTime;
 
     public GameThread(SurfaceHolder surfaceHolder, GameView gameView) {
         this.surfaceHolder = surfaceHolder;
@@ -44,6 +45,14 @@ public class GameThread extends Thread {
                     surfaceHolder.unlockCanvasAndPost(canvas);
                 }
             }
+        }
+        elapsedTime = System.currentTimeMillis() - startTime;
+        if (elapsedTime >= 5000) {
+            isRunning = false;
+            Context context = gameView.getContext();
+            Intent gameOverIntent = new Intent(context, EndActivity.class);
+            context.startActivity(gameOverIntent);
+
         }
     }
 
