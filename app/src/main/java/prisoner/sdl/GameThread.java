@@ -23,6 +23,7 @@ public class GameThread extends Thread {
     private long elapsedTime;
     private int targetX, targetY;
 
+    private long elapsedTime;
 
     public GameThread(SurfaceHolder surfaceHolder, GameView gameView) {
         this.surfaceHolder = surfaceHolder;
