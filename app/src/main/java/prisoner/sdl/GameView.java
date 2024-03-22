@@ -79,9 +79,6 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
         }
     }
 
-    public void drawBuisson(Canvas canvas, int x, int y) {
-        canvas.drawBitmap(buissonBitmap, x, y, null);
-    }
     public void setBuissonPosition(int x, int y) {
         buissonX = x;
         buissonY = y;
