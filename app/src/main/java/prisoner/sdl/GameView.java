@@ -24,8 +24,8 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
         buissonVisible = false;
         buissonBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.bush);
 
-        int newWidth = buissonBitmap.getWidth() / 2; // Divisez la largeur actuelle par 2
-        int newHeight = buissonBitmap.getHeight() / 2; // Divisez la hauteur actuelle par 2
+        int newWidth = buissonBitmap.getWidth() / 2;
+        int newHeight = buissonBitmap.getHeight() / 2;
         buissonBitmap = Bitmap.createScaledBitmap(buissonBitmap, newWidth, newHeight, false);
     }
 
@@ -34,7 +34,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
     public void surfaceCreated(SurfaceHolder holder) {
         gameThread.setRunning(true);
         gameThread.start();
-        gameThread.startGame(); // Appel de la méthode startGame() pour initialiser le jeu
+        gameThread.startGame();
 
     }
 
@@ -62,14 +62,12 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
     public void draw(Canvas canvas) {
         super.draw(canvas);
         if (canvas != null) {
-            // Dessinez l'image du fond d'écran
             Drawable background = ContextCompat.getDrawable(getContext(), R.drawable.fond_jeu);
             if (background != null) {
                 background.setBounds(0, 0, canvas.getWidth(), canvas.getHeight());
                 background.draw(canvas);
             }
 
-            // Dessinez le reste de votre contenu
             if (buissonVisible) {
                 canvas.drawBitmap(buissonBitmap, buissonX, buissonY, null);
             }
@@ -77,7 +75,6 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
     }
 
     public void drawBuisson(Canvas canvas, int x, int y) {
-        // Dessinez le buisson aux coordonnées (x, y)
         canvas.drawBitmap(buissonBitmap, x, y, null);
     }
 
