@@ -10,6 +10,7 @@ import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.media.AudioFormat;
 import android.media.AudioRecord;
+import android.app.Activity;
 import android.os.Bundle;
 import android.util.Log;
 
@@ -22,6 +23,8 @@ import androidx.core.view.WindowInsetsCompat;
 import java.util.Random;
 
 public class GameActivity extends AppCompatActivity implements SensorEventListener {
+
+//    public class GameActivity extends Activity
 
     private SensorManager sensorManager;
     private Sensor accelerometer;
@@ -38,6 +41,7 @@ public class GameActivity extends AppCompatActivity implements SensorEventListen
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
+//        setContentView(new GameView(this));
 
         gameType = GameTypeEnum.DOG;
         setBackground();
