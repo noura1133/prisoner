@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.graphics.Canvas;
 import android.view.SurfaceHolder;
 
+import java.util.List;
 import java.util.Random;
 
 public class GameThread extends Thread {
@@ -64,23 +65,31 @@ public class GameThread extends Thread {
     }
 
 
+
     public void startGame() {
         startTime = System.currentTimeMillis();
         isRunning = true;
         bushTouched = false;
-        bushX = new Random().nextInt(gameView.getWidth() - 100);  // 100 est la largeur du buisson
-        bushY = new Random().nextInt(gameView.getHeight() - 100); // 100 est la hauteur du buisson
+
+        int screenHeight = gameView.getHeight();
+        int screenWidth = gameView.getWidth();
+
+        bushX = new Random().nextInt(screenWidth - 50);
+        bushY = new Random().nextInt((int) (screenHeight * (2.0 / 3.0))) + (screenHeight / 3);
     }
 
-    public boolean onTouchEvent(int touchX, int touchY) {
-        if (touchX >= bushX && touchX < bushX + 100 && touchY >= bushY && touchY < bushY + 100) {
-            // Buisson touché
-            bushTouched = true;
-            // TODO: Déplacer le personnage et gérer la victoire
-            return true;
-        }
-        return false;
-    }
 
+    public int getBushX() {
+        return bushX;
+    }
+    public int getBushY() {
+        return bushY;
+    }
+    public void setBushY(int y) {
+        bushY = y;
+    }
+    public void setBushX(int x) {
+        bushX = x;
+    }
 }
 
