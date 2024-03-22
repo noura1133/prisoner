@@ -5,11 +5,15 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;
+import android.util.Log;
+import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
 import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
+import android.widget.Toast;
+
 
 public class GameView extends SurfaceView implements SurfaceHolder.Callback {
     private GameThread gameThread;
@@ -88,6 +92,27 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
     public void hideBuisson() {
         buissonVisible = false;
     }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        int touchX = (int) event.getX();
+        int touchY = (int) event.getY();
+        buissonX = gameThread.getBushX();
+        buissonY = gameThread.getBushY();
+
+        if (event.getAction() == MotionEvent.ACTION_DOWN) {
+            if (touchX >= buissonX && touchX < buissonX + buissonBitmap.getWidth() &&
+                    touchY >= buissonY && touchY < buissonY + buissonBitmap.getHeight()) {
+
+                Context context = getContext();
+                Toast.makeText(context, "Buisson touché !", Toast.LENGTH_SHORT).show();
+
+                return true;
+            }
+        }
+        return super.onTouchEvent(event);
+    }
+
 
 
 }

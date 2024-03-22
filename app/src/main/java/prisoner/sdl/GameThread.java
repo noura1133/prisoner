@@ -80,4 +80,17 @@ public class GameThread extends Thread {
         }
         return false;
     }
+
+    public int getBushX() {
+        return bushX;
+    }
+    public int getBushY() {
+        return bushY;
+    }
+    public void setBushY(int y) {
+        bushY = y;
+    }
+    public void setBushX(int x) {
+        bushX = x;
+    }
 }
