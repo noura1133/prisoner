@@ -27,7 +27,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
     public GameView(Context context, String score, long timer) {
         super(context);
         getHolder().addCallback(this);
-        gameThread = new GameThread(getHolder(), this);
+        gameThread = new GameThread(getHolder(), this, timer);
         buissonVisible = false;
         this.score = Integer.parseInt(score);
 
@@ -71,7 +71,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
     public void draw(Canvas canvas) {
         super.draw(canvas);
         if (canvas != null) {
-            Drawable background = ContextCompat.getDrawable(getContext(), R.drawable.fond_jeu);
+            Drawable background = ContextCompat.getDrawable(getContext(), R.drawable.prisoner_bush_guard);
             if (background != null) {
                 background.setBounds(0, 0, canvas.getWidth(), canvas.getHeight());
                 background.draw(canvas);

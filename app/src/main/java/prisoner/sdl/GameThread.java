@@ -24,11 +24,14 @@ public class GameThread extends Thread {
     private int targetX, targetY;
 
     private long elapsedTime;
+    private long timer;
 
-    public GameThread(SurfaceHolder surfaceHolder, GameView gameView) {
+
+    public GameThread(SurfaceHolder surfaceHolder, GameView gameView, long timer) {
         this.surfaceHolder = surfaceHolder;
         this.gameView = gameView;
         this.isRunning = false;
+        this.timer = timer;
     }
 
     public void setRunning(boolean running) {
@@ -53,7 +56,7 @@ public class GameThread extends Thread {
             }
         }
         elapsedTime = System.currentTimeMillis() - startTime;
-        if (elapsedTime >= 5000) {
+        if (elapsedTime >= timer) {
             isRunning = false;
             Context context = gameView.getContext();
             Intent gameOverIntent = new Intent(context, EndActivity.class);
