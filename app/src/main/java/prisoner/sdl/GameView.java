@@ -1,6 +1,7 @@
 package prisoner.sdl;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
@@ -102,9 +103,8 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
             if (touchX >= buissonX && touchX < buissonX + buissonBitmap.getWidth() &&
                     touchY >= buissonY && touchY < buissonY + buissonBitmap.getHeight()) {
 
-                Context context = getContext();
-                Toast.makeText(context, "Buisson touché !", Toast.LENGTH_SHORT).show();
-
+                Intent intent = new Intent(getContext(), GameActivity.class);
+                getContext().startActivity(intent);
                 return true;
             }
         }
