@@ -1,5 +1,6 @@
 package prisoner.sdl;
 
+import android.app.Activity;
 import android.os.Bundle;
 
 import androidx.activity.EdgeToEdge;
@@ -8,12 +9,12 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-public class GameActivity extends AppCompatActivity {
+public class GameActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_game);
+        setContentView(new GameView(this));
         /*
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_game);
