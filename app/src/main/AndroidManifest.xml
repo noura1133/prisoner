@@ -13,8 +13,13 @@
         android:theme="@style/Theme.Prisoner"
         tools:targetApi="31">
         <activity
+
             android:name=".EndActivity"
             android:exported="false" />
+        <activity
+            android:name=".RegleActivity"
+            android:exported="true"/>
+
         <activity
             android:name=".MainActivity"
             android:exported="true">
