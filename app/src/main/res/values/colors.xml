@@ -4,5 +4,6 @@
     <color name="white">#FFFFFFFF</color>
     <color name="blue_background">#FF0000FF</color>
     <color name="yellow_background">#FFFF00</color>
-
+    <color name="cta">#E58410</color>
+    <color name="cta_secondary">#DDDDDD</color>
 </resources>

@@ -1,124 +1,128 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<com.google.android.flexbox.FlexboxLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background_img"
+    android:background="@drawable/prisoner_rules_bg"
+    app:alignItems="center"
+    app:justifyContent="space_evenly"
+    app:flexDirection="column"
     tools:context=".RegleActivity">
 
-    <TextView
-        android:id="@+id/textViewTitle"
+    <ImageView
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:src="@drawable/prisoner_home_logo"
+        />
+
+
+    <com.google.android.flexbox.FlexboxLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="112dp"
-        android:text="Prisoner"
-        android:textColor="@android:color/white"
-        android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <LinearLayout
-        android:id="@+id/linearLayout"
-        android:layout_width="382dp"
-        android:layout_height="427dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="16dp"
-        android:background="@drawable/background_yellow_border"
-        android:orientation="vertical"
-        android:padding="20dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textViewTitle"
-        app:layout_constraintVertical_bias="0.32">
-
+        app:flexDirection="column"
+        app:alignItems="center">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="10dp"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:textSize="20dp"
+            android:textAllCaps="true"
             android:text="Règles du jeu"
-            android:textColor="@android:color/white"
-            android:textSize="20sp" />
+            android:layout_marginBottom="20dp"
+            />
 
-        <LinearLayout
-            android:layout_width="327dp"
-            android:layout_height="76dp"
-            android:layout_marginTop="30dp"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:id="@+id/imageView"
-                android:layout_width="112dp"
-                android:layout_height="71dp"
-                app:srcCompat="@drawable/icone" />
+        <com.google.android.flexbox.FlexboxLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:flexDirection="column"
+            android:layout_marginBottom="20dp"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:textSize="20dp"
+                android:layout_marginBottom="8dp"
+                android:text="Évitez la Lumière de la Tour de Guet " />
 
             <TextView
-                android:layout_width="209dp"
-                android:layout_height="71dp"
-                android:paddingStart="60dp"
-                android:text="1. Règle 1\n2. Règle 2\n3. Règle 3\n..."
-                android:textColor="@android:color/white" />
+                android:layout_width="350dp"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:textSize="16dp"
+                android:text="Les gardes scrutent les environs depuis leur tour de guet, utilisant leur lampe pour repérer les fugitifs. Pour éviter d'être capturé, cachez le capteur de luminosité de votre appareil afin que le garde ne puisse pas vous voir." />
 
-        </LinearLayout>
+        </com.google.android.flexbox.FlexboxLayout>
 
-        <LinearLayout
-            android:layout_width="327dp"
-            android:layout_height="76dp"
-            android:layout_marginTop="30dp"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:id="@+id/imageView2"
-                android:layout_width="112dp"
-                android:layout_height="71dp"
-                app:srcCompat="@drawable/icone" />
+        <com.google.android.flexbox.FlexboxLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            app:flexDirection="column">
 
             <TextView
-                android:layout_width="209dp"
-                android:layout_height="71dp"
-                android:paddingStart="60dp"
-                android:text="1. Règle 1\n2. Règle 2\n3. Règle 3\n..."
-                android:textColor="@android:color/white" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="327dp"
-            android:layout_height="76dp"
-            android:layout_marginTop="30dp"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:id="@+id/imageView3"
-                android:layout_width="112dp"
-                android:layout_height="71dp"
-                app:srcCompat="@drawable/icone" />
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:textSize="20dp"
+                android:layout_marginBottom="8dp"
+                android:text="Fuyez le Chien de Garde :" />
 
             <TextView
-                android:layout_width="209dp"
-                android:layout_height="71dp"
-                android:paddingStart="60dp"
-                android:text="1. Règle 1\n2. Règle 2\n3. Règle 3\n..."
-                android:textColor="@android:color/white" />
+                android:layout_width="350dp"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:textSize="16dp"
+                android:text="Un chien vigilant patrouille dans les parages et a repéré votre fuite ! Pour échapper à sa poursuite, secouez votre tablette rapidement pour semer le chien et continuer votre évasion." />
+        </com.google.android.flexbox.FlexboxLayout>
 
-        </LinearLayout>
+<com.google.android.flexbox.FlexboxLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
 
-    </LinearLayout>
+    app:flexDirection="column">
 
-    <Button
-        android:id="@+id/button"
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Jouer"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:textSize="20dp"
+        android:layout_marginBottom="8dp"
+        android:text="Se Cacher derrière les Buissons :" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <TextView
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:textSize="16dp"
+        android:text="Surveillez les alentours, car un maton monte la garde à l'extérieur de la prison. Pour vous dissimuler et éviter d'être repéré, touchez les buissons pour vous cacher derrière et contourner le garde sans être détecté." />
+</com.google.android.flexbox.FlexboxLayout>
+
+
+    </com.google.android.flexbox.FlexboxLayout>
+
+    <Button
+        android:id="@+id/buttonStart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/cta"
+        android:textColor="@color/white"
+        android:layout_marginBottom="10dp"
+        android:text="Jouer" />
+
+
+
+</com.google.android.flexbox.FlexboxLayout>
+
+
+
+
+
+
