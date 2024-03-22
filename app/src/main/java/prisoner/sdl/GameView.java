@@ -78,9 +78,6 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
         }
     }
 
-    public void drawBuisson(Canvas canvas, int x, int y) {
-        canvas.drawBitmap(buissonBitmap, x, y, null);
-    }
     public void setBuissonPosition(int x, int y) {
         buissonX = x;
         buissonY = y;
@@ -104,8 +101,9 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
 
                 Context context = getContext();
                 Toast.makeText(context, "Buisson touché !", Toast.LENGTH_SHORT).show();
-
-                return true;
+                gameThread.setBushTouched(true);
+                hideBuisson();
+                return true ;
             }
         }
         return super.onTouchEvent(event);
