@@ -1,0 +1,15 @@
+{
+  "username1": {
+    "oldScore": 100,
+    "bestScore": 200
+  },
+  "username2": {
+    "oldScore": 150,
+    "bestScore": 250
+  },
+  "username3": {
+    "oldScore": 10,
+    "bestScore": 20
+  }
+
+}
