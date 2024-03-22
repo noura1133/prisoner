@@ -26,11 +26,13 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
         getHolder().addCallback(this);
         gameThread = new GameThread(getHolder(), this);
         buissonVisible = false;
+
         buissonBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.bush);
 
         int newWidth = buissonBitmap.getWidth() / 2;
         int newHeight = buissonBitmap.getHeight() / 2;
         buissonBitmap = Bitmap.createScaledBitmap(buissonBitmap, newWidth, newHeight, false);
+
     }
 
 
@@ -39,7 +41,6 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
         gameThread.setRunning(true);
         gameThread.start();
         gameThread.startGame();
-
     }
 
 
@@ -71,7 +72,6 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
                 background.setBounds(0, 0, canvas.getWidth(), canvas.getHeight());
                 background.draw(canvas);
             }
-
             if (buissonVisible) {
                 canvas.drawBitmap(buissonBitmap, buissonX, buissonY, null);
             }
@@ -81,8 +81,6 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
     public void drawBuisson(Canvas canvas, int x, int y) {
         canvas.drawBitmap(buissonBitmap, x, y, null);
     }
-
-
     public void setBuissonPosition(int x, int y) {
         buissonX = x;
         buissonY = y;
@@ -112,7 +110,5 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
         }
         return super.onTouchEvent(event);
     }
-
-
-
 }
+
