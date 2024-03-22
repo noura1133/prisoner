@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
 import android.graphics.drawable.Drawable;
 import android.util.Log;
 import android.view.MotionEvent;
@@ -22,6 +24,8 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
     private boolean buissonVisible;
     private int buissonX, buissonY;
     private int score;
+    private Paint paint;
+
 
 
     public GameView(Context context, String score, long timer) {
@@ -37,6 +41,9 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
         int newHeight = buissonBitmap.getHeight() / 2;
         buissonBitmap = Bitmap.createScaledBitmap(buissonBitmap, newWidth, newHeight, false);
 
+        paint = new Paint();
+        paint.setColor(Color.WHITE);
+        paint.setTextSize(50);
     }
 
 
@@ -79,9 +86,14 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
             if (buissonVisible) {
                 canvas.drawBitmap(buissonBitmap, buissonX, buissonY, null);
             }
+            drawScore(canvas);
+
         }
     }
 
+    private void drawScore(Canvas canvas) {
+        canvas.drawText("Score: " + score, 50, getHeight() - 50, paint);
+    }
     public void setBuissonPosition(int x, int y) {
         buissonX = x;
         buissonY = y;
