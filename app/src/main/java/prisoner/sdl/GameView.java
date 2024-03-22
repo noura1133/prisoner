@@ -21,12 +21,15 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
     private Bitmap buissonBitmap;
     private boolean buissonVisible;
     private int buissonX, buissonY;
+    private int score;
 
-    public GameView(Context context) {
+
+    public GameView(Context context, String score, long timer) {
         super(context);
         getHolder().addCallback(this);
         gameThread = new GameThread(getHolder(), this);
         buissonVisible = false;
+        this.score = Integer.parseInt(score);
 
         buissonBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.bush);
 
@@ -102,8 +105,9 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
         if (event.getAction() == MotionEvent.ACTION_DOWN) {
             if (touchX >= buissonX && touchX < buissonX + buissonBitmap.getWidth() &&
                     touchY >= buissonY && touchY < buissonY + buissonBitmap.getHeight()) {
-
+                score ++;
                 Intent intent = new Intent(getContext(), GameActivity.class);
+                intent.putExtra("score", String.valueOf(score));
                 getContext().startActivity(intent);
                 return true;
             }
