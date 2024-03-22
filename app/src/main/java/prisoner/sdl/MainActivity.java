@@ -23,12 +23,23 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         Button buttonRules = findViewById(R.id.buttonRules);
+        Button buttonPlay = findViewById(R.id.buttonStart);
 
         buttonRules.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // Crée un Intent pour démarrer RegleActivity
                 Intent intent = new Intent(MainActivity.this, RegleActivity.class);
+                // Démarre l'activité
+                startActivity(intent);
+            }
+        });
+
+        buttonPlay.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Crée un Intent pour démarrer RegleActivity
+                Intent intent = new Intent(MainActivity.this, GameActivity.class);
                 // Démarre l'activité
                 startActivity(intent);
             }
