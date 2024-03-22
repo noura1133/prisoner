@@ -13,6 +13,7 @@ import android.media.AudioRecord;
 import android.app.Activity;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -20,6 +21,8 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Random;
 
 public class GameActivity extends AppCompatActivity implements SensorEventListener {
@@ -29,6 +32,8 @@ public class GameActivity extends AppCompatActivity implements SensorEventListen
     private Sensor lightSensor;
 
     private GameTypeEnum gameType;
+
+    private Integer score = 0;
 
     private long currentTimeMillis = System.currentTimeMillis();
     private Random random = new Random();
@@ -43,6 +48,14 @@ public class GameActivity extends AppCompatActivity implements SensorEventListen
         gameType = getRandomGameType();
         setBackground();
 
+        // Init score
+        Intent intent = getIntent();
+        String scoreString = intent.getStringExtra("score");
+        Integer scoreFromThread = (scoreString != null) ? Integer.parseInt(scoreString) : null;
+        score = (scoreFromThread != null) ? scoreFromThread : 0;
+
+
+        // Init sensor
         sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
         accelerometer = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
         lightSensor = sensorManager.getDefaultSensor(Sensor.TYPE_LIGHT);
@@ -70,7 +83,7 @@ public class GameActivity extends AppCompatActivity implements SensorEventListen
             }
         }
         if (event.sensor.getType() == Sensor.TYPE_LIGHT) {
-            checkLose();
+            checkLoose();
             if(gameType == GameTypeEnum.LIGHT && event.values[0] < 10 ){
                 gameManager();
             }
@@ -82,14 +95,21 @@ public class GameActivity extends AppCompatActivity implements SensorEventListen
 
     public void gameManager(){
         gameType = getRandomGameType();
+        score ++;
+        // TODO
+        // Mettre ça autre part ??
+        TextView scoreTextView = findViewById(R.id.textViewScore);
+        scoreTextView.setText(score == null ? "0" : String.valueOf(score));
         if(gameType == GameTypeEnum.OFFICER){
             Intent intent = new Intent(GameActivity.this, BushActivity.class);
+            intent.putExtra("score", String.valueOf(score));
+            intent.putExtra("timer", MAX_TIME_ALLOWED);
             startActivity(intent);
         }
         setBackground();
         this.currentTimeMillis = System.currentTimeMillis();
     }
-    public void checkLose(){
+    public void checkLoose(){
         if(System.currentTimeMillis() - this.currentTimeMillis > MAX_TIME_ALLOWED ){
             Intent intent = new Intent(GameActivity.this, EndActivity.class);
             startActivity(intent);
@@ -97,9 +117,15 @@ public class GameActivity extends AppCompatActivity implements SensorEventListen
     }
 
     private GameTypeEnum getRandomGameType() {
-        GameTypeEnum[] allGameTypes = { GameTypeEnum.DOG, GameTypeEnum.LIGHT, GameTypeEnum.OFFICER };
-        int randomIndex = random.nextInt(allGameTypes.length);
-        return allGameTypes[randomIndex];
+        GameTypeEnum[] allGameTypes = GameTypeEnum.values();
+
+        // Supprimer l'élément actuel de la liste
+        ArrayList<GameTypeEnum> availableTypes = new ArrayList<>(Arrays.asList(allGameTypes));
+        availableTypes.remove(gameType);
+
+        // Sélectionner un élément aléatoire de la liste modifiée
+        int randomIndex = random.nextInt(availableTypes.size());
+        return availableTypes.get(randomIndex);
     }
 
     @Override
