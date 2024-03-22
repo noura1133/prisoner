@@ -63,6 +63,7 @@ public class GameThread extends Thread {
         }
     }
 
+
     public void startGame() {
         startTime = System.currentTimeMillis();
         isRunning = true;
@@ -80,4 +81,6 @@ public class GameThread extends Thread {
         }
         return false;
     }
+
 }
+
