@@ -5,11 +5,6 @@ public enum GameTypeEnum {
     DOG ("dog_level"),
     LIGHT ("light_level"),
     OFFICER ("officer_level");
-<<<<<<< HEAD
-    //BASIC ("basic_level");
-=======
-   // BASIC ("basic_level");
->>>>>>> 6f2b924 (buisson qui bouge)
 
     private final String label;
 
