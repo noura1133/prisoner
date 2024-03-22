@@ -24,8 +24,6 @@ import java.util.Random;
 
 public class GameActivity extends AppCompatActivity implements SensorEventListener {
 
-//    public class GameActivity extends Activity
-
     private SensorManager sensorManager;
     private Sensor accelerometer;
     private Sensor lightSensor;
@@ -41,9 +39,8 @@ public class GameActivity extends AppCompatActivity implements SensorEventListen
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
-//        setContentView(new GameView(this));
 
-        gameType = GameTypeEnum.DOG;
+        gameType = getRandomGameType();
         setBackground();
 
         sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
@@ -85,6 +82,10 @@ public class GameActivity extends AppCompatActivity implements SensorEventListen
 
     public void gameManager(){
         gameType = getRandomGameType();
+        if(gameType == GameTypeEnum.OFFICER){
+            Intent intent = new Intent(GameActivity.this, BushActivity.class);
+            startActivity(intent);
+        }
         setBackground();
         this.currentTimeMillis = System.currentTimeMillis();
     }
@@ -96,7 +97,7 @@ public class GameActivity extends AppCompatActivity implements SensorEventListen
     }
 
     private GameTypeEnum getRandomGameType() {
-        GameTypeEnum[] allGameTypes = { GameTypeEnum.DOG, GameTypeEnum.LIGHT };
+        GameTypeEnum[] allGameTypes = { GameTypeEnum.DOG, GameTypeEnum.LIGHT, GameTypeEnum.OFFICER };
         int randomIndex = random.nextInt(allGameTypes.length);
         return allGameTypes[randomIndex];
     }
