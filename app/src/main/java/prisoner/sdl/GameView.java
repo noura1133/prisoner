@@ -82,9 +82,6 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
         }
     }
 
-    public void drawBuisson(Canvas canvas, int x, int y) {
-        canvas.drawBitmap(buissonBitmap, x, y, null);
-    }
     public void setBuissonPosition(int x, int y) {
         buissonX = x;
         buissonY = y;
@@ -105,11 +102,20 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
         if (event.getAction() == MotionEvent.ACTION_DOWN) {
             if (touchX >= buissonX && touchX < buissonX + buissonBitmap.getWidth() &&
                     touchY >= buissonY && touchY < buissonY + buissonBitmap.getHeight()) {
+<<<<<<< HEAD
                 score ++;
                 Intent intent = new Intent(getContext(), GameActivity.class);
                 intent.putExtra("score", String.valueOf(score));
                 getContext().startActivity(intent);
                 return true;
+=======
+
+                Context context = getContext();
+                Toast.makeText(context, "Buisson touché !", Toast.LENGTH_SHORT).show();
+                gameThread.setBushTouched(true);
+                hideBuisson();
+                return true ;
+>>>>>>> 6f2b924 (buisson qui bouge)
             }
         }
         return super.onTouchEvent(event);
